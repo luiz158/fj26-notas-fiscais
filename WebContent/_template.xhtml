@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Sistemas de Notas Fiscais</title>
 	<h:outputStylesheet library="css" name="style.css" />
@@ -17,6 +18,16 @@
 		</div>
 		
 		<div id="conteudo">
+			<h:form>
+				<p:menubar>
+				<p:menuitem value="Produtos" url="produto.xhtml"/>
+				<p:submenu label="Notas Fiscais">
+					<p:menuitem value="Cadastro" url="notafiscal.xhtml" />
+					<p:menuitem value="Listagem" url="listanotas.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Sair" action="#{loginBean.logout}"/>
+				</p:menubar>
+			</h:form>
 			<ui:insert name="corpo"/>
 		</div>
 		<div id="rodape">

@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:caelum="http://java.sun.com/jsf/composite/caelum">
+	xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
+	xmlns:p="http://primefaces.org/ui">
 	
 	<ui:composition template="/_template.xhtml">
 		<ui:define name="corpo">
@@ -15,13 +16,10 @@
 						Dados da nota
 					</legend>
 					<h:outputLabel value="CNPJ Cliente:" />
-					<h:inputText value="#{notaFiscalBean.notaFiscal.cnpj}"/>
+					<p:inputMask value="#{notaFiscalBean.notaFiscal.cnpj}" mask="99.999.999/9999-99" />
 					
-					<h:outputLabel value="CNPJ Cliente:" />
-					<h:inputText value="#{notaFiscalBean.notaFiscal.data.time}">
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-					</h:inputText>
-					
+					<h:outputLabel value="Data:" />
+					<p:calendar value="#{notaFiscalBean.notaFiscal.data.time}" lang="pt_BR" pattern="dd/MM/yyyy" />
 					<h:commandButton value="Gravar" action="#{notaFiscalBean.gravar}"/>
 				</fieldset>
 				<fieldset>

@@ -28,4 +28,9 @@ public class LoginBean {
 	public boolean isLogado(){
 		return usuario.getLogin() != null;
 	}
+	
+	public String logout(){
+		usuario = new Usuario();
+		return "login?redirect=true";
+	}
 }
