@@ -2,7 +2,11 @@ package br.com.caelum.notasfiscais.mb;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 
 import br.com.caelum.notasfiscais.dao.DAO;
@@ -55,6 +59,18 @@ public class ProdutoBean {
 		EntityManager em = new JPAUtil().getEntityManager();
 		return em.createQuery("select p from Produto p where lower(p.nome) like :nome order by p.nome").
 				setParameter("nome", nome+"%").getResultList();
+	}
+	
+	public void comecaComMaiuscula(FacesContext fc, 
+			UIComponent component, Object value)throws ValidatorException{
+		String valor = value.toString();
+		if(!valor.matches("[A-Z].*")){
+			throw new ValidatorException(new FacesMessage("Azedou !"));
+		}
+	}
+	
+	public String cancelar(){
+		return "produto";
 	}
 	
 }
