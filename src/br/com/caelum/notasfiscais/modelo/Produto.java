@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Produto implements Serializable{
 	/**
@@ -15,7 +17,7 @@ public class Produto implements Serializable{
 
 	@Id @GeneratedValue
 	private Long id;
-
+	@NotEmpty(message="Cade o nome do Produto ?")
 	private String nome;
 
 	private String descricao;
