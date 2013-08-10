@@ -27,7 +27,6 @@ public class NotaFiscalBean implements Serializable{
 		dao.adiciona(notaFiscal);
 		
 		this.notaFiscal = new NotaFiscal();
-		idProduto = null;
 	}
 	
 	public NotaFiscal getNotaFiscal(){

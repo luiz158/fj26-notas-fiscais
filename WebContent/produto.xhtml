@@ -30,10 +30,13 @@
 					<h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
 					
 					<h:outputLabel value="Preço:" for="preco"/>		
-					<h:inputText id="preco" value="#{produtoBean.produto.preco}"/>
+					<h:inputText id="preco" value="#{produtoBean.produto.preco}" 
+					required="true" requiredMessage="Preco obrigatorio" validatorMessage="O valor minimo eh 0,50">
+						<f:validateDoubleRange minimum="0.50"/>
+					</h:inputText>
 					
 					<h:commandButton value="Gravar" action="#{produtoBean.grava}">
-						<f:ajax  execute="@form" render=":formLista"/>
+					<!-- 	<f:ajax  execute="@form" render=":formLista"/>  -->
 					</h:commandButton>
 				</fieldset>
 				<h:messages styleClass="erros"/>
