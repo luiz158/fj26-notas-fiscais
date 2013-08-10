@@ -3,8 +3,10 @@ package br.com.caelum.notasfiscais.mb;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
 
 import br.com.caelum.notasfiscais.dao.DAO;
+import br.com.caelum.notasfiscais.dao.JPAUtil;
 import br.com.caelum.notasfiscais.modelo.Produto;
 
 @ManagedBean
@@ -49,5 +51,10 @@ public class ProdutoBean {
 		this.produtos = produtos;
 	}
 	
+	public List<Produto> busca(String nome){
+		EntityManager em = new JPAUtil().getEntityManager();
+		return em.createQuery("select p from Produto p where lower(p.nome) like :nome order by p.nome").
+				setParameter("nome", nome+"%").getResultList();
+	}
 	
 }

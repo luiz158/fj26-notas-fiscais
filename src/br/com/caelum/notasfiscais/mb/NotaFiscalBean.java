@@ -27,6 +27,7 @@ public class NotaFiscalBean implements Serializable{
 		dao.adiciona(notaFiscal);
 		
 		this.notaFiscal = new NotaFiscal();
+		idProduto = null;
 	}
 	
 	public NotaFiscal getNotaFiscal(){
@@ -41,6 +42,7 @@ public class NotaFiscalBean implements Serializable{
 		notaFiscal.getItens().add(item);
 		item.setNotaFiscal(notaFiscal);
 		item = new Item();
+		idProduto = null;
 	}
 	
 	public Long getIdProduto(){
