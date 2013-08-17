@@ -1,22 +1,32 @@
 package br.com.caelum.notasfiscais.mb;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import br.com.caelum.notasfiscais.dao.DAO;
-import br.com.caelum.notasfiscais.dao.JPAUtil;
 import br.com.caelum.notasfiscais.modelo.Produto;
 
-@ManagedBean
-public class ProdutoBean {
+@Named
+@SessionScoped
+public class ProdutoBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Produto produto = new Produto();
 	private List<Produto> produtos;
+	
+	@Inject
+	EntityManager em;
 
 	public Produto getProduto() {
 		return this.produto;
@@ -56,7 +66,7 @@ public class ProdutoBean {
 	}
 	
 	public List<Produto> busca(String nome){
-		EntityManager em = new JPAUtil().getEntityManager();
+		
 		return em.createQuery("select p from Produto p where lower(p.nome) like :nome order by p.nome").
 				setParameter("nome", nome+"%").getResultList();
 	}
